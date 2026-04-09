@@ -1,97 +1,36 @@
-# Job Copilot
-
-Un copilote intelligent de recherche d'emploi. Les bonnes offres, au bon moment, avec un plan d'action clair.
-
-## Le problème
-
-Chercher un emploi, c'est chronophage : trier des centaines d'offres, décider lesquelles méritent une candidature, adapter son CV, suivre ses candidatures. La plupart des outils existants sont des job boards passifs qui ne priorisent rien.
-
-## La solution
-
-Job Copilot va chercher les offres pertinentes pour vous, les score selon vos critères, et vous donne un suivi simple de vos candidatures — le tout dans une interface épurée et actionnable.
-
-### Fonctionnalités clés
-
-- **Offres personnalisées** — jobs scorés et triés selon vos préférences (titre, localisation, remote, salaire, contrat)
-- **Recherche et filtres** — recherche textuelle + filtres essentiels
-- **Save / Dismiss** — sauvegardez ou ignorez avec une raison
-- **Suivi de candidatures** — pipeline simple : Sauvegardé → Postulé → Terminé
-- **Profil enrichissable** — CVs, mots-clés, entreprises exclues
-
-## Tech Stack
-
-| Couche | Techno |
-|---|---|
-| Frontend | [Next.js](https://nextjs.org/) (App Router), React, TypeScript |
-| UI | [Tailwind CSS](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/) |
-| Backend | [Supabase](https://supabase.com/) (Postgres, Auth, Storage, RLS) |
-| Déploiement | [Vercel](https://vercel.com/) |
-| Source jobs | Indeed via MCP |
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-### Prérequis
-
-- Node.js 18+
-- npm ou pnpm
-- Un projet Supabase (Auth + Postgres + Storage)
-
-### Installation
-
-```bash
-git clone https://github.com/<your-username>/job-copilot.git
-cd job-copilot
-npm install
-```
-
-### Variables d'environnement
-
-Créer un fichier `.env.local` à la racine :
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-```
-
-### Lancer en développement
+First, run the development server:
 
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-L'app sera disponible sur [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Structure du projet
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```
-job-copilot/
-├── app/                    # Pages Next.js (App Router)
-├── components/ui/          # Composants UI réutilisables
-├── features/               # Modules par feature
-│   ├── jobs/               # Liste, recherche, scoring
-│   ├── applications/       # Suivi de candidatures
-│   └── profile/            # Profil et préférences
-├── lib/
-│   ├── services/           # Services serveur
-│   │   ├── job-source/     # Abstraction source de jobs
-│   │   ├── scoring/        # Scoring algorithmique
-│   │   └── deduplication/  # Déduplication des offres
-│   └── supabase/           # Client et helpers Supabase
-├── PRODUCT.md              # Document produit canonique
-└── README.md
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Documentation
+## Learn More
 
-Le document produit complet (architecture, data model, roadmap, scope) est disponible dans [`PRODUCT.md`](./PRODUCT.md).
+To learn more about Next.js, take a look at the following resources:
 
-## Roadmap
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- [x] Définition produit et architecture
-- [ ] **Phase 1 — MVP** : Auth, onboarding, jobs, search, save/dismiss, suivi, profil
-- [ ] **Phase 2 — Intelligence** : Today dashboard, IA, behavioral learning
-- [ ] **Phase 3 — Maturité** : ATS/Classic, multi-source, intégrations
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Licence
+## Deploy on Vercel
 
-Ce projet est privé et non distribué sous licence open source.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

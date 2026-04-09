@@ -1,0 +1,68 @@
+---
+description: Conventions et architecture du projet Job Copilot. S'applique à tout le code.
+alwaysApply: true
+---
+
+# Job Copilot — Conventions projet
+
+## Référence
+- Lire `PRODUCT.md` pour le contexte produit complet.
+- Lire `AGENTS.md` pour le workflow d'orchestration.
+
+## Stack
+- Next.js (App Router), React, TypeScript
+- Tailwind CSS + shadcn/ui
+- Supabase (Postgres, Auth, Storage, RLS)
+- Déploiement : Vercel
+
+## Architecture
+```
+app/                    # Pages Next.js (App Router)
+  (auth)/               # Pages publiques (login, signup)
+  (app)/                # Pages protégées (layout avec nav)
+    onboarding/
+    applications/
+    profile/
+components/
+  ui/                   # Composants shadcn/ui + réutilisables
+  navigation/           # Sidebar, BottomBar, NavItem
+features/
+  jobs/                 # Composants, hooks, actions pour les jobs
+  applications/         # Composants, hooks, actions pour le suivi
+  profile/              # Composants, hooks, actions pour le profil
+  onboarding/           # Composants, hooks, actions pour l'onboarding
+lib/
+  services/             # Services serveur
+    job-source/         # JobSourceService + IndeedMCPAdapter
+    scoring/            # ScoringService
+    normalization/      # JobNormalizationService
+    deduplication/      # DeduplicationService
+  supabase/             # Clients Supabase (client.ts, server.ts)
+```
+
+## Conventions de code
+- **UI en français**, **code en anglais**
+- Composants : PascalCase (`JobCard.tsx`)
+- Fonctions / variables : camelCase (`scoreJob`, `fetchJobs`)
+- Fichiers : kebab-case pour les services (`job-source/indeed-mcp-adapter.ts`)
+- Max 300 lignes par fichier — découper si plus
+- Server Actions pour les mutations
+- React Server Components par défaut, `"use client"` uniquement si nécessaire
+- Imports absolus depuis `@/` (ex: `@/lib/supabase/server`)
+
+## Supabase
+- Client browser : `lib/supabase/client.ts`
+- Client serveur : `lib/supabase/server.ts`
+- Jamais de `service_role` key côté client
+- RLS activé sur toutes les tables
+
+## UI
+- Utiliser shadcn/ui en priorité
+- Tailwind pour le styling — pas de CSS modules, pas de styled-components
+- Toast pour les confirmations (sonner ou shadcn toast)
+- Skeleton loading pendant les chargements
+
+## Git
+- Branches : `feat/<issue-number>-short-description`
+- Commits : Conventional Commits (`feat:`, `fix:`, `chore:`, `refactor:`)
+- PR : référencer l'issue avec `Closes #<num>`

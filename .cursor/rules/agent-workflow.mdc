@@ -1,0 +1,38 @@
+---
+description: Workflow obligatoire pour tout agent travaillant sur une issue du projet.
+alwaysApply: true
+---
+
+# Workflow agent — Job Copilot
+
+## Avant de coder
+
+1. **Lire `PRODUCT.md`** pour comprendre le produit.
+2. **Identifier l'issue** assignée (l'utilisateur la donne au lancement).
+3. **Vérifier la branche** : toujours partir de `main` à jour (`git pull origin main`).
+4. **Créer la branche** : `feat/<issue-number>-short-description`.
+5. **Lire l'issue GitHub** si un lien est fourni — respecter le scope, le hors scope, et les critères d'acceptation.
+
+## Pendant le développement
+
+- Respecter les conventions dans `.cursor/rules/project.mdc`.
+- Ne toucher QUE les fichiers liés au scope de l'issue.
+- Ne PAS modifier des fichiers hors scope sauf si absolument nécessaire (et le signaler).
+- Commiter régulièrement avec des messages Conventional Commits.
+- Vérifier que `npm run build` passe avant de considérer la tâche terminée.
+
+## En fin de tâche
+
+1. S'assurer que tous les critères d'acceptation de l'issue sont couverts.
+2. Faire un `npm run build` final — aucune erreur.
+3. Lister les fichiers créés/modifiés pour faciliter la review.
+4. Signaler tout risque, dette technique, ou question ouverte.
+5. Proposer le commit final et indiquer que la branche est prête pour PR.
+
+## Règles strictes
+
+- **NE JAMAIS travailler sur `main` directement.**
+- **NE JAMAIS modifier des fichiers sans rapport avec l'issue.**
+- **NE JAMAIS inventer des features hors scope** — si une idée émerge, la signaler comme suggestion.
+- **NE JAMAIS supprimer ou écraser du code existant** sans raison explicite liée à l'issue.
+- **TOUJOURS** vérifier que le code existant n'est pas cassé par les changements.
